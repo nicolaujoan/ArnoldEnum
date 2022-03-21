@@ -1,5 +1,8 @@
 package edu.poniperro.logica;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 public enum Planeta {
     MERCURY(3.303e+23, 2.4397e+6),
     VENUS(4.869e+24, 6.0518e6),
@@ -20,6 +23,14 @@ public enum Planeta {
         this.radio = radio;
     }
 
+    public static Set<Planeta> getPlanetasTerrestres() {
+        return EnumSet.range(MERCURY, MARS);
+    }
+
+    public static Set<Planeta> getGigantesGaseosos() {
+        return EnumSet.range(JUPITER, NEPTUNE);
+    }
+
     public double getMasa() {
         return this.masa;
     }
@@ -32,7 +43,7 @@ public enum Planeta {
         return G * getMasa() / Math.pow(getRadio(), 2);
     }
 
-    public double pesoSuperficie(double peso) {
-        return gravedadSuperficie() * peso;
+    public double pesoSuperficie(double masa) {
+        return gravedadSuperficie() * masa;
     }
 }
